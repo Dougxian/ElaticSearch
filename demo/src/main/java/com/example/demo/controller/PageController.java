@@ -16,17 +16,11 @@ public class PageController {
 
     @Autowired
     private CustomPagesRepository customPagesRepository;
-
-    //使用postman调试接口，没有做显示页面
-    @GetMapping("/main")
-    public String showmenu(){
-        return "main";
-    }
-
+    //调试接口
     @PostMapping("/main")
     public void search(@RequestBody String keyword){
-        List<Pages> l = customPagesRepository.findByKeyAndHighlightAdnPageable("Spring Boot is a very good skills",1,5);
-        for (Pages item :l
+        List<Pages> PageList = customPagesRepository.findByKeyAndHighlightAdnPageable("Spring Boot is a very good skills",1,5);
+        for (Pages item :PageList
              ) {
             System.out.println(item.getTitle()+item.getContent());
         }
